@@ -29,6 +29,7 @@ public class BuyerController {
 	@Autowired
 	BuyerDAO buyerDAO;
 
+	// Viewing property details for buyers
 	@RequestMapping(value = "/viewpropertydetailsbuyer.htm", method = RequestMethod.GET)
 	public String buyerPropertyDetails(HttpServletRequest request, Model model) {
 		

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.me.dao.UserDAO;
+import com.me.helper.SendMails;
 import com.me.pojo.Property;
 import com.me.pojo.User;
 
@@ -40,24 +41,29 @@ public class HomeController {
 
 	@Autowired
 	MailMail mailMail;
-
+	
+	
+	// Home page handler method
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
 		return "home";
 	}
 
+	//Handler for login page
 	@RequestMapping(value = "/login.htm", method = RequestMethod.GET)
 	public String login() {
 
 		return "signin";
 	}
 
+	//Handler method for the signup page
 	@RequestMapping(value = "/signup.htm", method = RequestMethod.GET)
 	public String signup() {
 
 		return "signup";
 	}
 
+	//Handler method for registering new users
 	@RequestMapping(value = "/registerUser.htm", method = RequestMethod.POST)
 	public ModelAndView signup(@Valid @ModelAttribute("user") User user, BindingResult result, ModelAndView mv) {
 
@@ -70,9 +76,7 @@ public class HomeController {
 			status = userDAO.createBuyer(user);
 			if (status)
 				try {
-					mailMail.sendMail("akashnagesh25@gmail.com", user.getEmail(), "User account has been created!",
-							"Hello, \n\n Your user account has been created. Please "
-									+ "login to continue browsing.\n\n Regards,\n Team Perfect Property");
+					SendMails.sendBuyerEmail(user.getEmail());
 				} catch (Exception e) {
 					System.out.println("Error sending email:" + e);
 				}
@@ -80,9 +84,7 @@ public class HomeController {
 			status = userDAO.createSeller(user);
 			if (status)
 				try {
-					mailMail.sendMail("akashnagesh25@gmail.com", user.getEmail(), "User account has been created!",
-							"Hello, \n\n Your user account has been created and you will "
-									+ "be able to login once the account is activated by the admin.\n\n Regards,\n Team Perfect Property");
+					SendMails.sendSellerMail(user.getEmail());
 				} catch (Exception e) {
 					System.out.println("Error sending email:" + e);
 				}
@@ -143,6 +145,7 @@ public class HomeController {
 		return "home";
 	}
 
+	// Handler method for logout
 	@RequestMapping(value = "/logout.htm")
 	public String logoutn(@ModelAttribute("user") User user, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -179,6 +182,7 @@ public class HomeController {
 
 	}
 
+	// Handler method to view all properties for the end user.
 	@RequestMapping(value = "/viewallproperties.htm", method = RequestMethod.GET)
 	public ModelAndView viewAllProperties(HttpServletRequest request, ModelAndView mv) {
 
@@ -195,12 +199,14 @@ public class HomeController {
 		return mv;
 	}
 
+	
 	@RequestMapping(value = "/signinbuyer.htm", method = RequestMethod.GET)
 	public String forcefulSignIn() {
 
 		return "signinbuyer";
 	}
 
+	
 	@RequestMapping(value = "/checkemail.htm", method = RequestMethod.POST)
 	public void checkEmail(HttpServletRequest request, HttpServletResponse response) {
 
