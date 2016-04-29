@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="buyer.template" template="/WEB-INF/views/buyerhomepage.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/buyerHeader.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/sellerfooter.jsp"></put-attribute>
+	</definition>
+	<definition name="viewbuyerproperties" extends="buyer.template">
+		<put-attribute name="title" value="View properties"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewBuyerProperties.jsp"></put-attribute>
+	</definition>
+	<definition name="viewpropertydetailsbuyer" extends="buyer.template">
+		<put-attribute name="title" value="View properties"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewPropertyDetailsBuyer.jsp"></put-attribute>
+	</definition>
+	<definition name="viewbuyerfavproperties" extends="buyer.template">
+		<put-attribute name="title" value="View properties"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewbuyerfavproperties.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

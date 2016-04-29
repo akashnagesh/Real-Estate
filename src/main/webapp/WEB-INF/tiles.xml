@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="base.template" template="/WEB-INF/views/sellerHomePage.jsp">
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/sellerheader.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/sellerfooter.jsp"></put-attribute>
+	</definition>
+	<definition name="addProperty" extends="base.template">
+		<put-attribute name="title" value="Add Properties"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/addProperty.jsp"></put-attribute>
+	</definition>
+	<definition name="viewSellerProperties" extends="base.template">
+		<put-attribute name="title" value="View my properties"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/viewSellerProperties.jsp"></put-attribute>
+	</definition>
+	<definition name="viewpropertydetailsseller" extends="base.template">
+		<put-attribute name="title" value="View my properties"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/viewpropertydetailsseller.jsp"></put-attribute>
+	</definition>
+	<definition name="viewsellermessages" extends="base.template">
+		<put-attribute name="title" value="View my messages"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/viewSellerMessages.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>
